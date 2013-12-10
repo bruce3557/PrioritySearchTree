@@ -8,7 +8,7 @@ Author
 Simon David Pratt
 Bruce Kuo (from Dec. 2013)
 
-=== License ===
+License
 ------------------------------------------------------
 See LICENSE file.
 
