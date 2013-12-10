@@ -12,6 +12,7 @@
 //                                                                           //
 ///////////////////////////////////////////////////////////////////////////////
 #include "PSTPoint.h"
+#include "base_util.h"
 #include <algorithm>
 
 namespace PrioritySearchTree {
@@ -37,5 +38,25 @@ namespace PrioritySearchTree {
 
   bool PSTPoint::operator>(const PSTPoint& p) {
     return x > p.getX();
+  }
+
+  vector<unsigned char> PSTPoint::serialize() {
+    vector<unsigned char> result = intToBytes(x);
+    vector<unsigned char> temp = intToBytes(y);
+    result.insert(result.end(), temp.begin(), temp.end());
+    return result;
+  }
+
+  void PSTPoint::load(char *filename) {
+    FILE *fp = fopen(filename, "r");
+    load(fp);
+  }
+
+  int PSTPoint::load(FILE *fp) {
+    x = bytesToInt(fp);
+    fseek(fp, 4, SEEK_CUR);
+    y = bytesToInt(fp);
+    fseek(fp, 4, SEEK_CUR);
+    return 8;
   }
 }

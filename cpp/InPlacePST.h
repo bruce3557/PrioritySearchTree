@@ -42,12 +42,22 @@ namespace PrioritySearchTree {
     coord_t POSITIVE_INFINITY;
     coord_t NEGATIVE_INFINITY;
     InPlacePST(PSTPoint* points, int n);
-    void printArray();
     PSTPoint leftMostNE(coord_t xmin, coord_t ymin);
     PSTPoint highestNE(coord_t xmin, coord_t ymin);
     PSTPoint highest3Sided(coord_t xmin, coord_t xmax, coord_t ymin);
     vector<PSTPoint>* enumerate3Sided(coord_t xmin, coord_t xmax, coord_t ymin);
     void printTree();
+
+    vector< unsigned char > serialize();
+    int load(FILE* fp);
+    void load(char *filename);
+
+    void printArray() {
+      cout << "RESULT: " << endl;
+      for(int i=0;i<npoints;i++)
+        cout << tree[i] << " ";
+      cout << endl << "OVER" << endl;
+    }
   };
 }
 

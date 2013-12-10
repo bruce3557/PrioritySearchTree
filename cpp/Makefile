@@ -12,26 +12,28 @@ all: test_sort test_partition test_pst test_leda
 test_leda:
 	g++ $(CXXFLAGS) -L$(LEDAROOT) -I$(LEDAROOT)/incl test_leda.cpp -lleda -lX11 -lm -o test_leda
 
-test_pst: PSTPoint.o sort/heap_sort.o InPlacePST.o control_utilities.o array_utilities.o test_pst.cpp
+test_pst: PSTPoint.o base_util.o sort/heap_sort.o InPlacePST.o control_utilities.o array_utilities.o test_pst.cpp
 
-test_sort: PSTPoint.o array_utilities.o sort/insertion_sort.o sort/heap_sort.o test_sort.cpp
+test_sort: PSTPoint.o base_util.o array_utilities.o sort/insertion_sort.o sort/heap_sort.o test_sort.cpp
 
-test_partition: PSTPoint.o array_utilities.o sort/heap_sort.o sort/stable_01_sort.o test_partition.cpp
+test_partition: PSTPoint.o base_util.o array_utilities.o sort/heap_sort.o sort/stable_01_sort.o test_partition.cpp
 
 # object files
-InPlacePST.o: PSTPoint.o sort/heap_sort.o InPlacePST.h
+InPlacePST.o: PSTPoint.o base_util.o sort/heap_sort.o InPlacePST.h
 
-sort/insertion_sort.o: PSTPoint.o array_utilities.o sort/insertion_sort.h
+sort/insertion_sort.o: PSTPoint.o base_util.o array_utilities.o sort/insertion_sort.h
 
-sort/heap_sort.o: PSTPoint.o array_utilities.o sort/heap_sort.h
+sort/heap_sort.o: PSTPoint.o base_util.o array_utilities.o sort/heap_sort.h
 
-sort/stable_01_sort.o: PSTPoint.o array_utilities.o sort/stable_01_sort.h
+sort/stable_01_sort.o: PSTPoint.o base_util.o array_utilities.o sort/stable_01_sort.h
 
 control_utilities.o: control_utilities.h
 
 array_utilities.o: PSTPoint.o array_utilities.h
 
-PSTPoint.o: PSTPoint.h
+PSTPoint.o: PSTPoint.h base_util.o
+
+base_util.o: base_util.h
 
 clean:
 	@if [ -f test_leda ]; then rm test_leda; fi
