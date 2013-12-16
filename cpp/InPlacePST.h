@@ -29,7 +29,6 @@ namespace PrioritySearchTree {
   class InPlacePST {
     PSTPoint* tree;
     int npoints;
-    InPlacePST() {}
     void buildLevel(int i, int n);
     void swap(int a, int b);
     void inPlaceSort(int begin, int end, const PSTPoint& s);
@@ -41,6 +40,9 @@ namespace PrioritySearchTree {
   public:
     coord_t POSITIVE_INFINITY;
     coord_t NEGATIVE_INFINITY;
+    InPlacePST(){}
+    InPlacePST(char *filename);
+    InPlacePST(FILE *fp);
     InPlacePST(PSTPoint* points, int n);
     PSTPoint leftMostNE(coord_t xmin, coord_t ymin);
     PSTPoint highestNE(coord_t xmin, coord_t ymin);

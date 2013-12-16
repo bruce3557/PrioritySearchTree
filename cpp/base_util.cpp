@@ -21,7 +21,7 @@ int bytesToInt(vector<unsigned char> &vec) {
 int bytesToInt(FILE *fp) {
   int result = 0;
   unsigned char s[5];
-  fread(s, sizeof(char), 4, fp);
+  fread(s, sizeof(unsigned char), 4, fp);
   for(int i=0;i<4;++i) {
     int x = s[3-i];
     result |= x << (i * 8);

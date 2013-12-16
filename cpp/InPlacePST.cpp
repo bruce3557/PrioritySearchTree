@@ -53,6 +53,15 @@ namespace PrioritySearchTree {
   ///////////////////////////////////////////////////////////////////////////////
   // Methods                                                                   //
   ///////////////////////////////////////////////////////////////////////////////
+	
+	InPlacePST::InPlacePST(char *filename) {
+		load(filename);
+	}
+
+	InPlacePST::InPlacePST(FILE *fp) {
+		load(fp);
+	}
+
   InPlacePST::InPlacePST(PSTPoint* points, int n) {
     time_t before, after;
     if(numeric_limits<coord_t>::has_infinity) {
@@ -92,12 +101,11 @@ namespace PrioritySearchTree {
   int InPlacePST::load(FILE *fp) {
     int size = 0;
     npoints = bytesToInt(fp);
-    fseek(fp, 4, SEEK_CUR);
+		cout << "# of points: " << npoints << endl << flush;
     size += 4;
     tree = new PSTPoint[npoints];
     for(int i = 0;i < npoints; ++i) {
       int shift = tree[i].load(fp);
-      fseek(fp, shift, SEEK_CUR);
       size += shift;
     }
     return size;

@@ -14,6 +14,8 @@
 #include "PSTPoint.h"
 #include "base_util.h"
 #include <algorithm>
+#include <iostream>
+using namespace std;
 
 namespace PrioritySearchTree {
   void PSTPoint::setX(coord_t new_x) {
@@ -54,9 +56,7 @@ namespace PrioritySearchTree {
 
   int PSTPoint::load(FILE *fp) {
     x = bytesToInt(fp);
-    fseek(fp, 4, SEEK_CUR);
     y = bytesToInt(fp);
-    fseek(fp, 4, SEEK_CUR);
     return 8;
   }
 }

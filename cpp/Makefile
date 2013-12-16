@@ -6,13 +6,15 @@ else
 	CXXFLAGS=-O0 -g -Wall
 endif
 
-all: test_sort test_partition test_pst test_leda
+all: test_sort test_partition test_pst test_pst_serialize test_leda
 
 # executables
 test_leda:
 	g++ $(CXXFLAGS) -L$(LEDAROOT) -I$(LEDAROOT)/incl test_leda.cpp -lleda -lX11 -lm -o test_leda
 
 test_pst: PSTPoint.o base_util.o sort/heap_sort.o InPlacePST.o control_utilities.o array_utilities.o test_pst.cpp
+
+test_pst_serialize: PSTPoint.o base_util.o sort/heap_sort.o InPlacePST.o control_utilities.o array_utilities.o test_pst_serialize.cpp
 
 test_sort: PSTPoint.o base_util.o array_utilities.o sort/insertion_sort.o sort/heap_sort.o test_sort.cpp
 
